@@ -1,0 +1,567 @@
+/* ==================== 1. Cài Đặt Chung ==================== */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark);
+    margin: 0;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    position: relative;
+}
+
+/* Lớp nền động */
+.animated-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Tăng độ tương phản màu sắc và góc gradient */
+    background: linear-gradient(135deg, #2b2b2b, #4a4a4a, #1a1a1a, #0d0d0d);
+    /* Tăng kích thước background để hiệu ứng rõ hơn */
+    background-size: 800% 800%;
+    /* Giảm thời gian animation để hiệu ứng nhanh hơn */
+    animation: gradientAnimation 12s ease infinite; 
+    z-index: -1;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ==================== 2. Phần Đầu Trang (Header) ==================== */
+.site-header {
+    text-align: center;
+    padding: 80px 20px 40px;
+    background: linear-gradient(to bottom, var(--card-bg), var(--card-bg-subtle));
+    border-bottom: 2px solid var(--border-color);
+    box-shadow: 0 6px 15px var(--shadow-color);
+    position: relative;
+    z-index: 1;
+}
+
+.site-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    color: var(--accent-color);
+    margin: 0;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.site-subtitle {
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    color: var(--text-color);
+    margin-top: 10px;
+}
+
+#datetime {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    margin-top: 15px;
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
+/* ==================== 3. Bộ Lọc (Filter) ==================== */
+.filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 1;
+    position: relative;
+}
+
+.filter-container input[type="text"],
+.filter-container input[type="date"] {
+    padding: 12px 18px;
+    border-radius: 25px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color-input);
+    color: var(--text-color);
+    font-size: 1rem;
+    width: clamp(200px, 40vw, 300px);
+    transition: all 0.3s ease;
+}
+
+.filter-container input[type="text"]:focus,
+.filter-container input[type="date"]:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 5px var(--accent-color);
+}
+
+.filter-container input::placeholder {
+    color: var(--placeholder-color);
+}
+
+.filter-checkboxes {
+    display: flex;
+    align-items: center;
+    color: var(--text-color);
+}
+
+.filter-checkboxes input[type="checkbox"] {
+    margin-right: 8px;
+    cursor: pointer;
+    accent-color: var(--accent-color);
+}
+
+/* ==================== 4. Thư Viện Ảnh (Gallery) ==================== */
+.gallery-container {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: auto;
+    z-index: 1;
+    position: relative;
+}
+
+.album {
+    margin-bottom: 60px;
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    border: 1px solid var(--border-color);
+    transition: all 0.5s ease;
+}
+
+.album-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(2rem, 5vw, 3rem);
+    text-align: center;
+    color: var(--accent-color-subtle);
+    border-bottom: 2px dashed var(--border-color);
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+.media-grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.image-column,
+.video-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .media-grid {
+        flex-direction: column;
+    }
+}
+
+.media-item {
+    background-color: var(--bg-color-item);
+    border-radius: 8px;
+    overflow: hidden;
+    width: 100%;
+    box-shadow: 0 2px 6px var(--shadow-color-item);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.media-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 25px var(--shadow-color-hover);
+    z-index: 10;
+}
+
+.media-item img, .media-item video {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.caption {
+    padding: 15px;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.caption-title {
+    font-size: 1.2rem;
+    color: var(--title-color);
+    margin: 0 0 8px 0;
+}
+
+.caption-text {
+    font-size: 0.9rem;
+    color: var(--caption-color);
+    font-style: italic;
+    margin: 0;
+}
+
+/* ==================== 5. Chân Trang và Nút Cuộn ==================== */
+.site-footer {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    margin-top: 40px;
+    border-top: 2px solid var(--border-color);
+    z-index: 1;
+    position: relative;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.contact-info p,
+.contact-info a {
+    margin: 5px 0;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+    color: var(--accent-color);
+}
+
+.social-links {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-links a {
+    color: var(--text-color);
+    font-size: 2rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-links a:hover {
+    transform: scale(1.2);
+    color: var(--accent-color);
+}
+
+.copyright-text {
+    font-size: 0.9rem;
+    color: var(--caption-color);
+    margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+    .footer-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+}
+
+#backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: none;
+    width: 55px;
+    height: 55px;
+    background-color: var(--accent-color);
+    color: var(--bg-color-dark);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 28px;
+    line-height: 55px;
+    text-align: center;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 999;
+}
+
+#backToTop:hover {
+    opacity: 1;
+    transform: translateY(-3px);
+}
+
+/* ==================== 6. Chế độ Sáng/Tối ==================== */
+:root {
+    --bg-color-dark: #0d0d0d;
+    --bg-color-light: #f0f2f5;
+    --text-color-dark: #e0e0e0;
+    --text-color-light: #333;
+    --card-bg-dark: #1a1a1a;
+    --card-bg-light: #fff;
+    --border-color-dark: #333;
+    --border-color-light: #ddd;
+    --accent-color-dark: #ffd700;
+    --accent-color-light: #b8860b;
+    --caption-color-dark: #aaa;
+    --caption-color-light: #666;
+    --shadow-dark: rgba(0,0,0,0.4);
+    --shadow-light: rgba(0,0,0,0.1);
+    --bg-color-input-dark: #222;
+    --bg-color-input-light: #e9ecef;
+    --placeholder-color-dark: #888;
+    --placeholder-color-light: #aaa;
+    --bg-color-item-dark: #222;
+    --bg-color-item-light: #fff;
+    --shadow-color-item-dark: rgba(0,0,0,0.1);
+    --shadow-color-item-light: rgba(0,0,0,0.05);
+    --shadow-color-hover-dark: rgba(0,0,0,0.4);
+    --shadow-color-hover-light: rgba(0,0,0,0.15);
+    --title-color-dark: #f0f0f0;
+    --title-color-light: #333;
+}
+
+/* Áp dụng biến màu cho chế độ tối */
+body {
+    --bg-color: var(--bg-color-dark);
+    --text-color: var(--text-color-dark);
+    --card-bg: var(--card-bg-dark);
+    --card-bg-subtle: #222;
+    --border-color: var(--border-color-dark);
+    --accent-color: var(--accent-color-dark);
+    --accent-color-subtle: #b8860b;
+    --caption-color: var(--caption-color-dark);
+    --shadow-color: var(--shadow-dark);
+    --bg-color-input: var(--bg-color-input-dark);
+    --placeholder-color: var(--placeholder-color-dark);
+    --bg-color-item: var(--bg-color-item-dark);
+    --shadow-color-item: var(--shadow-color-item-dark);
+    --shadow-color-hover: var(--shadow-color-hover-dark);
+    --title-color: var(--title-color-dark);
+}
+
+/* Áp dụng biến màu cho chế độ sáng */
+body.light-mode {
+    --bg-color: var(--bg-color-light);
+    --text-color: var(--text-color-light);
+    --card-bg: var(--card-bg-light);
+    --card-bg-subtle: #f8f8f8;
+    --border-color: var(--border-color-light);
+    --accent-color: var(--accent-color-light);
+    --accent-color-subtle: #ffd700;
+    --caption-color: var(--caption-color-light);
+    --shadow-color: var(--shadow-light);
+    --bg-color-input: var(--bg-color-input-light);
+    --placeholder-color: var(--placeholder-color-light);
+    --bg-color-item: var(--bg-color-item-light);
+    --shadow-color-item: var(--shadow-color-item-light);
+    --shadow-color-hover: var(--shadow-color-hover-light);
+    --title-color: var(--title-color-light);
+}
+
+/* Các quy tắc màu được cập nhật để sử dụng biến */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.site-header {
+    background: linear-gradient(to bottom, var(--card-bg), var(--card-bg-subtle));
+    border-bottom-color: var(--border-color);
+    box-shadow: 0 6px 15px var(--shadow-color);
+}
+
+.site-title {
+    color: var(--accent-color);
+}
+
+.site-subtitle {
+    color: var(--text-color);
+}
+
+#datetime {
+    color: var(--accent-color);
+}
+
+.filter-container {
+    background-color: var(--card-bg);
+    border-bottom-color: var(--border-color);
+}
+
+.filter-container input[type="text"],
+.filter-container input[type="date"] {
+    border-color: var(--border-color);
+    background-color: var(--bg-color-input);
+    color: var(--text-color);
+}
+
+.filter-container input[type="text"]:focus,
+.filter-container input[type="date"]:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 5px var(--accent-color);
+}
+
+.filter-container input::placeholder {
+    color: var(--placeholder-color);
+}
+
+.filter-checkboxes {
+    color: var(--text-color);
+}
+
+.filter-checkboxes input[type="checkbox"] {
+    accent-color: var(--accent-color);
+}
+
+.album {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.album-title {
+    color: var(--accent-color-subtle);
+    border-bottom-color: var(--border-color);
+}
+
+.media-item {
+    background-color: var(--bg-color-item);
+    border-color: var(--border-color);
+    box-shadow: 0 2px 6px var(--shadow-color-item);
+}
+
+.media-item:hover {
+    box-shadow: 0 8px 25px var(--shadow-color-hover);
+}
+
+.media-item img, .media-item video {
+    border-bottom-color: var(--border-color);
+}
+
+.caption-title {
+    color: var(--title-color);
+}
+
+.caption-text {
+    color: var(--caption-color);
+}
+
+.site-footer {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border-top-color: var(--border-color);
+}
+
+.contact-info a {
+    color: var(--text-color);
+}
+
+.contact-info a:hover {
+    color: var(--accent-color);
+}
+
+.social-links a {
+    color: var(--text-color);
+}
+
+.social-links a:hover {
+    color: var(--accent-color);
+}
+
+.copyright-text {
+    color: var(--caption-color);
+}
+
+#backToTop {
+    background-color: var(--accent-color);
+    color: var(--bg-color-dark);
+    box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+#backToTop:hover {
+    box-shadow: 0 4px 10px var(--shadow-color-hover);
+}
+
+#theme-toggle {
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    transition: transform 0.3s ease;
+    color: var(--accent-color);
+}
+
+#theme-toggle:hover {
+    transform: scale(1.1);
+}
+/* ==================== Hiệu ứng Lightbox ==================== */
+.lightbox {
+    display: none; /* Ẩn đi mặc định */
+    position: fixed; /* Vị trí cố định */
+    z-index: 1000; /* Luôn hiển thị trên cùng */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Thêm thanh cuộn nếu cần */
+    background-color: rgba(0, 0, 0, 0.9); /* Lớp phủ mờ */
+    text-align: center;
+}
+
+.lightbox-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+    padding-top: 50px;
+    animation: zoomIn 0.3s; /* Thêm hiệu ứng phóng to */
+}
+
+@keyframes zoomIn {
+    from {transform: scale(0.8);}
+    to {transform: scale(1);}
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#lightbox-caption {
+    margin: 15px auto;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+}

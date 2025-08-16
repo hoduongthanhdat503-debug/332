@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS cho trang đăng nhập */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #0d0d0d;
+            color: #e0e0e0;
+            font-family: 'Roboto', sans-serif;
+        }
+        .login-container {
+            background-color: #1a1a1a;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            text-align: center;
+            width: 350px;
+        }
+        .login-container h1 {
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+        .login-container input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            background-color: #222;
+            color: #e0e0e0;
+            box-sizing: border-box;
+        }
+        .login-container input::placeholder {
+            color: #888;
+        }
+        .login-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #ffd700;
+            color: #0d0d0d;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .login-container button:hover {
+            background-color: #ffc107;
+        }
+        .login-container p {
+            color: #ff4d4d;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Đăng Nhập</h1>
+        <form id="loginForm">
+            <input type="password" id="password" placeholder="Nhập mật khẩu" required>
+            <button type="submit">Đăng Nhập</button>
+        </form>
+        <p id="errorMessage" style="display: none;">Mật khẩu không đúng. Vui lòng thử lại.</p>
+    </div>
+    <script src="JS/login.js"></script>
+</body>
+</html>
